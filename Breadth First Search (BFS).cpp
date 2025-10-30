@@ -3,10 +3,8 @@ links and indexing content for search engines. Write a simple program to index w
 pages using Depth First Search (DFS). The program should simulate a web graph where
 pages are represented as nodes and hyperlinks as edges.*/
 #include <iostream>
-#include <vector>
-#include <queue>
 using namespace std;
-void BFS(int p,int n,vector<bool> &visited,vector<vector<int>> &adj){
+void BFS(int p,int n,bool visited[],int** adj){
     queue<int> q;
     visited[p]=true;
     q.push(p);
@@ -27,8 +25,19 @@ int main(){
         int n;
     cout<<"Enter Number of Web pages:";
     cin>>n;
-    vector<bool> visited(n,false);
-    vector<vector<int>>adj(n,vector<int>(n,0));
+    bool* visited=new bool[n];
+    int** adj=new int*[n];
+    for (int i=0;i<n;i++){
+        adj[i]=new int[n];
+    };
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                adj[i][j]=0;
+            };
+        };
+        for(int i=0;i<n;i++){
+            visited[i]=0;
+        };
     for(int i=0;i<n;i++){
         for(int j=i+1;j<n;j++){
             int ch=0;
